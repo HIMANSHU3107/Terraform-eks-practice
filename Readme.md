@@ -53,6 +53,18 @@ kubectl apply -f kubernetes/
 
 Application will be accessible via AWS LoadBalancer created by Kubernetes service.
 
+
+
+
+User
+  ↓
+AWS ALB
+  ↓
+EKS Cluster
+  ↓
+Pods
+
+
 eks-terraform-microservice-demo
 │
 ├── README.md

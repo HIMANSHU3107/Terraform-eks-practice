@@ -1,11 +1,15 @@
-variable "region" {
-  default = "eu-west-2"
-}
-
 variable "cluster_name" {
-  default = "terraform-eks-cluster"
+  description = "Name of the EKS cluster"
+  type        = string
 }
 
-variable "node_instance_type" {
-  default = "t3.medium"
+variable "subnet_ids" {
+  description = "Subnets for the EKS cluster"
+  type        = list(string)
+}
+
+variable "environment" {
+  description = "Environment name"
+  type        = string
+  default     = "dev"
 }
