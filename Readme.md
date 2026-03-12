@@ -1,6 +1,6 @@
 # EKS Terraform Microservice Deployment
 
-This project demonstrates how to provision an Amazon EKS cluster using Terraform and deploy a containerized application using Kubernetes manifests.
+This repository is a learning exercise created to practice Terraform structure for EKS/Kubernetes deployments.
 
 ## Architecture
 
