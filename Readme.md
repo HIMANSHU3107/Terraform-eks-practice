@@ -8,7 +8,6 @@ Terraform provisions:
 
 - VPC
 - Subnets
-- IAM roles
 - EKS cluster
 - Managed node group
 
@@ -54,18 +53,10 @@ kubectl apply -f kubernetes/
 Application will be accessible via AWS LoadBalancer created by Kubernetes service.
 
 
+Folder structure
 
-
-User
-  ↓
-AWS ALB
-  ↓
-EKS Cluster
-  ↓
-Pods
-
-
-eks-terraform-microservice-demo
+```
+Terraform-eks-practice
 │
 ├── README.md
 ├── .gitignore
@@ -108,3 +99,4 @@ eks-terraform-microservice-demo
 └── scripts
     ├── deploy.sh
     └── destroy.sh
+```
