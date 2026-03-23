@@ -23,3 +23,50 @@ module "nodegroup" {
   min_size     = 1
   max_size     = 3
 }
+
+
+
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Private API Gateway Custom Domain with VPC Endpoint Association
+
+Parameters:
+  DomainName:
+    Type: String
+    Description: Custom domain name (e.g., api.internal.example.com)
+
+  CertificateArn:
+    Type: String
+    Description: ACM Certificate ARN (must be in same region)
+
+  VpcEndpointId:
+    Type: String
+    Description: VPC Interface Endpoint ID (execute-api)
+
+Resources:
+
+  PrivateApiCustomDomain:
+    Type: AWS::ApiGateway::DomainName
+    Properties:
+      DomainName: !Ref DomainName
+      EndpointConfiguration:
+        Types:
+          - PRIVATE
+      RegionalCertificateArn: !Ref CertificateArn
+      SecurityPolicy: TLS_1_2
+
+  DomainAccessAssociation:
+    Type: AWS::ApiGateway::DomainNameAccessAssociation
+    Properties:
+      DomainNameArn: !GetAtt PrivateApiCustomDomain.DomainNameArn
+      AccessAssociationSource: !Ref VpcEndpointId
+      AccessAssociationSourceType: VPCE
+
+Outputs:
+
+  DomainNameArn:
+    Description: ARN of the Private Custom Domain
+    Value: !GetAtt PrivateApiCustomDomain.DomainNameArn
+
+  DomainName:
+    Description: Custom Domain Name
+    Value: !Ref DomainName
